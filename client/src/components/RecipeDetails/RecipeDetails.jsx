@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importar estilos de Bootstrap
 
+const API = import.meta.env.VITE_API_URL;
 const DetalleReceta = () => {
   const { id } = useParams();
   const [receta, setReceta] = useState(null);
@@ -10,7 +11,7 @@ const DetalleReceta = () => {
   useEffect(() => {
     const obtenerReceta = async () => {
       try {
-        const respuesta = await axios.get(`http://localhost:8080/api/recetas/${id}`);
+       await axios.get(`${API}/api/recetas/${id}`);
         setReceta(respuesta.data);
       } catch (error) {
         console.error('Hubo un error al obtener los detalles de la receta!', error);
